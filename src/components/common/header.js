@@ -5,7 +5,7 @@ export default class Header extends Component {
   render() {
     return (
       <header className="header">
-        <h4>{this.props.text}</h4>
+        <h4 class="text-center">{this.props.text}</h4>
       </header>
     );
   }

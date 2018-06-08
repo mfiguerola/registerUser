@@ -8,7 +8,7 @@ export default class RegisterForm extends Component {
     return (
       <div className="register-form">
         <Header text="TODO"></Header>{/* TODO: Header content is home page user type selection */}
-        <Button color="light">{this.props.text}</Button>
+        <Button color="light">TODO: create forms texts</Button>
       </div>
     );
   }

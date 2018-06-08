@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
 import "./home.css";
 import Header from "../common/header";
 import { Link } from "react-router-dom";
@@ -35,13 +34,27 @@ export default class Home extends Component {
       const literals = pageConf.literals;
       const formFields = pageConf.form.values.map(formValue => (
         <Link to="/register">
-          <Button >{literals[formValue]}</Button>
+          {/* <Button>{literals[formValue]}</Button> */}
+          <div class="row">
+            <div class="col">{literals[formValue]}</div>
+          </div>  
         </Link>
       ));
       html = (
         <div className="home">
           <Header text={literals.header} />
-          {formFields}
+          <div>
+            <h4 class="text-center">{literals.title}</h4>
+          </div>
+          <div class="container">
+            {formFields}
+          </div>
+          <div class="text-center">{literals.persuasiveMessage}</div>
+          <div>
+            <a href="#" class="card-link text-center">
+              {literals.loginLink}
+            </a>
+          </div>
         </div>
       );
     }
