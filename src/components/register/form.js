@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
-import { Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 
 class Form extends Component {
@@ -28,15 +27,6 @@ class Form extends Component {
     const formFields = values.map(formValue => {
       const key = formValue.key;
       return (
-        // <Link key={formValue} to={{
-        //   pathname: '/register',
-        //   params: { value: formValue }
-        // }}>
-        //   <div className="primary-text row">
-        //     <div className="col">{literals[formValue]}</div>
-        //   </div>  
-        // </Link>
-
         <label key={key}>
           {literals[key].title}
           <input

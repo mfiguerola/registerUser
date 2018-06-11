@@ -8,6 +8,7 @@ export default class Welcome extends Component {
   state = {
     isLoading: true
   };
+
   componentDidMount() {
     fetch("http://localhost:4000/page/welcome")
       .then(res => res.json())
@@ -24,6 +25,7 @@ export default class Welcome extends Component {
         });
       });
   }
+
   render() {
     let html;
     if (this.state.error) {
@@ -44,15 +46,11 @@ export default class Welcome extends Component {
         <div className="welcome text-center">
           <Header text={literals.header} />
           <div>
-            if (checkIconPositionvalue === 'before') {
-              <Icon type="tick" size='big' />
-            }
+            <Icon type="tick" size='big' hasToShowIcon={checkIconPositionvalue === 'before'}/>
             <div dangerouslySetInnerHTML={{
               __html: literals.title.prefix + this.props.location.params.userName + literals.title.suffix
             }} />
-            if (checkIconPositionvalue === 'after') {
-              <Icon type="tick" size='big' />
-            }
+            <Icon type="tick" size='big' hasToShowIcon={checkIconPositionvalue === 'after'}/>
           </div>
           <Link key={userType} to={{
             pathname: '/home'
