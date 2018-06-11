@@ -35,7 +35,6 @@ export default class Home extends Component {
       const formFields = pageConf.form.values.map(formValue => (
         <Link key={formValue} to={{
           pathname: '/register',
-          // params: { value: formValue },
           hash: formValue
         }}>
           <div className="primary-text row">

@@ -5,14 +5,16 @@ import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Register from "./components/register/register";
 import Home from "./components/home/home";
+import Register from "./components/register/register";
+import Welcome from "./components/welcome/welcome";
 ReactDOM.render(
   <Router>
     <div>
       <Route exact path="/" component={App} />
       <Route path="/home" component={Home} />
       <Route path="/register" component={Register} />
+      <Route path="/welcome" component={Welcome} />
     </div>
   </Router>,
   document.getElementById("root")

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './register.css';
+import './register.scss';
 import Header from '../common/header';
 import Form from "./form";
 
@@ -32,7 +32,7 @@ export default class Register extends Component {
     } else {
       const pageConf = this.state.pageConf;
       const userType = this.props.location.hash.substring(1);
-      const literals = pageConf.literals[userType];
+      const literals = {...pageConf.literals[userType], ...pageConf.literals.common};
       const values = pageConf.form.values[userType];
       // const formFields = pageConf.form.values.map(formValue => (
       //   <Link key={formValue} to={{

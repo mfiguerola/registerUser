@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
-export default class Form extends Component {
-  // constructor(props) {
-  // super(props);
-  //   this.state = {value: ''};
-
-  //   this.handleChange = this.handleChange.bind(this);
-  //   this.handleSubmit = this.handleSubmit.bind(this);
-  // }
+class Form extends Component {
   state = { values: {} };
   handleChange = this.handleChange.bind(this);
   handleSubmit = this.handleSubmit.bind(this);
@@ -20,6 +14,12 @@ export default class Form extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    // TODO: validate form fields
+    this.props.history.push({
+      pathname: '/welcome',
+      hash: this.props.location.hash,
+      params: { userName: 'sample' }
+    });
   }
 
   render() {
@@ -36,11 +36,13 @@ export default class Form extends Component {
         //     <div className="col">{literals[formValue]}</div>
         //   </div>  
         // </Link>
-        <label key={formValue.key} >
+
+        <label key={key}>
           {literals[key].title}
           <input
             type={literals[key].type}
-            value={null}//{this.state.value}
+            // required={literals[key].mandatory}
+            // value={null}//{this.state.value}
             placeholder={literals[key].placeholder}
             onChange={this.handleChange}
           />
@@ -50,8 +52,13 @@ export default class Form extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         {formFields}
-        <input type="submit" value="Submit" />
+        <sup>* </sup>{literals.requiredFields}
+        <Button block>
+          <input type="submit" value={literals.buttonText} />
+        </Button>  
       </form>
     );
   }
 }
+
+export default withRouter(Form)
