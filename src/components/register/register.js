@@ -31,8 +31,9 @@ export default class Register extends Component {
       html = <div>Loading...</div>;
     } else {
       const pageConf = this.state.pageConf;
-      const literals = pageConf.literals[this.props.location.params.value];
-      const values = pageConf.form.values[this.props.location.params.value];
+      const userType = this.props.location.hash.substring(1);
+      const literals = pageConf.literals[userType];
+      const values = pageConf.form.values[userType];
       // const formFields = pageConf.form.values.map(formValue => (
       //   <Link key={formValue} to={{
       //     pathname: '/register',
