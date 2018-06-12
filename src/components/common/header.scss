@@ -1,1 +1,13 @@
 @import "common";
+
+.close-container {
+  position: absolute;
+  top: $small-space;
+  right: $small-space;
+}
+
+.back-container {
+  position: absolute;
+  top: $small-space;
+  left: $small-space;
+}

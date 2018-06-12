@@ -46,7 +46,7 @@ export default class Register extends Component {
       // ));
       html = (
         <div className="home">
-          <Header text={literals.header} />
+          <Header text={literals.header} hasBackButton={true} userType={userType}/>
           <div>
             <Form data={{literals, values}} />
           </div>

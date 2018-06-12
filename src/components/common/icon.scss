@@ -1,11 +1,15 @@
-$sm-font-size: 10px;
-$md-font-size: 20px;
-$bg-font-size: 30px;
+$sm-width: 15px;
+$md-width: 40px;
+$bg-width: 100px;
 
-// $fontSizes : ($sm-font-size, $md-font-size, $bg-font-size);
+.icon-sm {
+  width: $sm-width;
+}
 
-// @each $name, $value in $fontSizes {
-//   .icon-#{$name} {
-//     font-size: $value;
-//   }
-// }
+.icon-md {
+  width: $md-width;
+}
+
+.icon-bg {
+  width: $bg-width;
+}

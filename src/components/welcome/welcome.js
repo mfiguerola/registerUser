@@ -46,11 +46,11 @@ export default class Welcome extends Component {
         <div className="welcome text-center">
           <Header text={literals.header} />
           <div>
-            <Icon type="tick" size='big' hasToShowIcon={checkIconPositionvalue === 'before'}/>
+            <Icon type="tick" size='bg' hasToHideIcon={checkIconPositionvalue === 'after'}/>
             <div dangerouslySetInnerHTML={{
               __html: literals.title.prefix + this.props.location.params.userName + literals.title.suffix
             }} />
-            <Icon type="tick" size='big' hasToShowIcon={checkIconPositionvalue === 'after'}/>
+            <Icon type="tick" size='bg' hasToHideIcon={checkIconPositionvalue === 'before'}/>
           </div>
           <Link key={userType} to={{
             pathname: '/home'
