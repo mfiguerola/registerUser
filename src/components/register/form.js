@@ -8,6 +8,7 @@ class Form extends Component {
   handleSubmit = this.handleSubmit.bind(this);
   
   handleChange(event) {
+    // TODO: init values
     // this.setState({ value: event.target.value });
   }
 
@@ -17,7 +18,7 @@ class Form extends Component {
     this.props.history.push({
       pathname: '/welcome',
       hash: this.props.location.hash,
-      params: { userName: 'sample' }
+      params: { userName: 'sample' } // TODO: send user name
     });
   }
 
@@ -26,13 +27,14 @@ class Form extends Component {
     const values = this.props.data.values;
     const formFields = values.map(formValue => {
       const key = formValue.key;
+      
       return (
         <label key={key}>
           {literals[key].title}
           <input
             type={literals[key].type}
-            // required={literals[key].mandatory}
-            // value={null}//{this.state.value}
+            // required={literals[key].mandatory} // TODO: set required fields
+            // value={null}//{this.state.value} // TODO: set/get value
             placeholder={literals[key].placeholder}
             onChange={this.handleChange}
           />

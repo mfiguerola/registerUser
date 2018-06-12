@@ -34,16 +34,6 @@ export default class Register extends Component {
       const userType = this.props.location.hash.substring(1);
       const literals = {...pageConf.literals[userType], ...pageConf.literals.common};
       const values = pageConf.form.values[userType];
-      // const formFields = pageConf.form.values.map(formValue => (
-      //   <Link key={formValue} to={{
-      //     pathname: '/register',
-      //     params: { value: formValue }
-      //   }}>
-      //     <div className="primary-text row">
-      //       <div className="col">{literals[formValue]}</div>
-      //     </div>  
-      //   </Link>
-      // ));
       html = (
         <div className="home">
           <Header text={literals.header} hasBackButton={true} userType={userType}/>
