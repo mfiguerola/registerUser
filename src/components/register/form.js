@@ -6,7 +6,6 @@ class Form extends Component {
   handleSubmit = this.handleSubmit.bind(this);
   emailRegExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       
-
   handleSubmit(event) {
     event.preventDefault();
     this.saveValues(this.getFields());
@@ -16,14 +15,14 @@ class Form extends Component {
         hash: this.props.location.hash,
         params: { userName: this.refs.name._valueTracker.getValue() }
       });
-    } else {
-      alert('Errors on form!'); // TODO: mark invalid inputs in red
     }  
   }
 
   isValid() {
     const invalidFields = this.fieldValues.filter(fieldValue => !fieldValue.isValid);
-    return invalidFields.length === 0;
+    const isValid = invalidFields.length === 0;
+    this.setState({isValid})
+    return isValid;
   }
 
   isFieldValid(formConfig, value) {
@@ -56,22 +55,24 @@ class Form extends Component {
 
   render() {
     const literals = this.props.data.literals;
-    const values = this.props.data.values;
+    const values = this.formFields || this.props.data.values;
     const formFields = values.map(formValue => {
       const key = formValue.key;
       let requiredHtml = '';
       if (formValue.mandatory) {
         requiredHtml = <sup> *</sup>;
       }
+      const baseInputClass = 'd-block pb-1';
+      const validInputClass = formValue.isValid === false ? ' text-danger' : '';
       return (
-        <label className="d-block pb-1" key={key}>
+        <label className={baseInputClass + validInputClass} key={key}>
           {literals[key].title}{requiredHtml}
           <input
             className="d-block w-100 mb-2"  
             type={formValue.type}
             ref={key}
+            name={key}
             placeholder={literals[key].placeholder}
-            onChange={this.handleChange}
           />
         </label>
       );
