@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Header from '../common/header';
 import Icon from '../common/icon';
 import { Link } from "react-router-dom";
-import './welcome.scss';
 
 export default class Welcome extends Component {
   state = {
