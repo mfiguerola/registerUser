@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import "./home.scss";
 import Header from "../common/header";
 import { Link } from "react-router-dom";
+import Icon from '../common/icon';
+import "./home.scss";
 
 export default class Home extends Component {
   state = {
@@ -32,28 +33,40 @@ export default class Home extends Component {
     } else {
       const pageConf = this.state.pageConf;
       const literals = pageConf.literals;
-      const formFields = pageConf.form.values.map(formValue => (
-        <Link key={formValue} to={{
-          pathname: '/register',
-          hash: formValue
-        }}>
-          <div className="primary-text row">
-            <div className="col">{literals[formValue]}</div>
-          </div>  
-        </Link>
-      ));
+      const formValuesLength = pageConf.form.values.length;
+      const formFields = pageConf.form.values.map((formValue, i) => {
+        let rowClass;
+        if (formValuesLength === i + 1) {
+          rowClass = 'light-text row mx-3 py-2 border-top border-bottom border-secondary';
+        } else {
+          rowClass = 'light-text row mx-3 py-2 border-top border-secondary';
+        }
+        return (
+          <Link key={formValue} to={{
+            pathname: '/register',
+            hash: formValue
+          }}>
+            <div className={rowClass}>
+              <div className="col">
+                <Icon type="tick" size='sm' />
+                <span className="pl-2">{literals[formValue]}</span>
+              </div>
+            </div>
+          </Link>
+        );
+      });
       html = (
         <div className="home">
           <Header text={literals.header} />
-          <div>
-            <h4 className="text-center">{literals.title}</h4>
+          <div className="py-3 primary-text">
+            <h5 className="text-center mb-0">{literals.title}</h5>
           </div>
-          <div className="container">
+          <div className="container px-0 pb-3">
             {formFields}
           </div>
-          <div className="text-center">{literals.persuasiveMessage}</div>
-          <div>
-            <a href="" className="secondary-text card-link text-center">
+          <div className="text-center small font-weight-bold px-2">{literals.persuasiveMessage}</div>
+          <div className="position-absolute footer-container w-100">
+            <a href="" className="secondary-text card-link text-center small d-block">
               {literals.loginLink}
             </a>
           </div>

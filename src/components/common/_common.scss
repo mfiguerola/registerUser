@@ -1,6 +1,10 @@
-$primary-color: rgb(65, 65, 65);
+@import "~bootstrap/scss/bootstrap";
+
+$primary-color: rgb(68, 68, 68);
 $secondary-color: rgb(6, 16, 129);
+$light-color: rgb(100, 100, 100);
 $small-space: 5px;
+$medium-space: 30px;
 
 .primary-text {
   color: $primary-color;
@@ -8,4 +12,8 @@ $small-space: 5px;
 
 .secondary-text {
   color: $secondary-color;
+}
+
+.light-text {
+  color: $light-color;
 }

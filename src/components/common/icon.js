@@ -3,10 +3,11 @@ import back from '../../icons/back.svg';
 import circle from '../../icons/circle.svg';
 import close from '../../icons/close.svg';
 import tick from '../../icons/tick_circle.svg';
+import blueTick from '../../icons/tick_circle_blue.svg';
 import './icon.scss';
 
 const icons = {
-  back, circle, close, tick
+  back, circle, close, tick, blueTick
 };
 
 export default class Icon extends Component {

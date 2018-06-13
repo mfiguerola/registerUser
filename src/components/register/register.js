@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './register.scss';
 import Header from '../common/header';
 import Form from "./form";
+import './form.scss';
 
 export default class Register extends Component {
   state = {
@@ -35,9 +35,9 @@ export default class Register extends Component {
       const literals = {...pageConf.literals[userType], ...pageConf.literals.common};
       const values = pageConf.form.values[userType];
       html = (
-        <div className="home">
+        <div className="register">
           <Header text={literals.header} hasBackButton={true} userType={userType}/>
-          <div>
+          <div className="register-form px-2 pt-3">
             <Form data={{literals, values}} />
           </div>
         </div>

@@ -1,13 +1,16 @@
 @import "common";
 
 .close-container {
-  position: absolute;
   top: $small-space;
   right: $small-space;
 }
 
 .back-container {
-  position: absolute;
   top: $small-space;
   left: $small-space;
+}
+
+.header-border {
+  @extend .border-bottom;
+  border-bottom-width: 3px!important;
 }

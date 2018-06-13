@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
 import { withRouter } from 'react-router-dom';
 
 class Form extends Component {
@@ -65,10 +64,11 @@ class Form extends Component {
         requiredHtml = <sup> *</sup>;
       }
       return (
-        <label key={key}>
+        <label className="d-block pb-1" key={key}>
           {literals[key].title}{requiredHtml}
           <input
-            type={literals[key].type}
+            className="d-block w-100 mb-2"  
+            type={formValue.type}
             ref={key}
             placeholder={literals[key].placeholder}
             onChange={this.handleChange}
@@ -79,10 +79,10 @@ class Form extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         {formFields}
-        <sup>* </sup>{literals.requiredFields}
-        <Button block>
-          <input type="submit" value={literals.buttonText} />
-        </Button>  
+        <div className="small font-weight-bold py-3">
+          <sup>* </sup>{literals.requiredFields}
+        </div>
+        <input type="submit" className="btn btn-block" value={literals.buttonText} /> 
       </form>
     );
   }
