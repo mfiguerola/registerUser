@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../common/header';
 import Icon from '../common/icon';
 import { Link } from "react-router-dom";
+import ReactHtmlParser from 'react-html-parser';
 
 export default class Welcome extends Component {
   state = {
@@ -48,7 +49,7 @@ export default class Welcome extends Component {
               <Icon type="blueTick" size='md' />
             </div>
             <div className="col-10 text-left pl-2">
-              <span className="primary-text">{listItem}</span>
+              <span className="primary-text">{ ReactHtmlParser(listItem) }</span>
             </div>
           </div>
         );
