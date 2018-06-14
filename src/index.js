@@ -1,13 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import registerServiceWorker from "./registerServiceWorker";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./components/home/home";
-import Register from "./components/register/register";
-import Welcome from "./components/welcome/welcome";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from './components/home/home';
+import Register from './components/register/register';
+import Welcome from './components/welcome/welcome';
 ReactDOM.render(
   <Router>
     <div>
@@ -17,6 +17,6 @@ ReactDOM.render(
       <Route path="/welcome" component={Welcome} />
     </div>
   </Router>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 registerServiceWorker();

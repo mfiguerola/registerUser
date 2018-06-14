@@ -1,28 +1,18 @@
 import React, { Component } from 'react';
-import Header from '../common/header';
-import Form from "./form";
-import './form.scss';
+import Header from '../common/header/header';
+import Form from './form/form';
+import './form/form.scss';
+import { loadPageConf } from '../../services/api';
 
 export default class Register extends Component {
   state = {
     isLoading: true
   };
+
   componentDidMount() {
-    fetch("http://localhost:4000/page/register")
-      .then(res => res.json())
-      .then(pageConf => {
-        this.setState({
-          isLoading: false,
-          pageConf
-        });
-      })
-      .catch(error => {
-        this.setState({
-          isLoading: false,
-          error
-        });
-      });
+    loadPageConf('register', this);
   }
+  
   render() {
     let html;
     if (this.state.error) {
@@ -32,13 +22,20 @@ export default class Register extends Component {
     } else {
       const pageConf = this.state.pageConf;
       const userType = this.props.location.hash.substring(1);
-      const literals = {...pageConf.literals[userType], ...pageConf.literals.common};
+      const literals = {
+        ...pageConf.literals[userType],
+        ...pageConf.literals.common
+      };
       const values = pageConf.form.values[userType];
       html = (
         <div className="register">
-          <Header text={literals.header} hasBackButton={true} userType={userType}/>
+          <Header
+            text={literals.header}
+            hasBackButton={true}
+            userType={userType}
+          />
           <div className="register-form px-2 pt-3">
-            <Form data={{literals, values}} />
+            <Form data={{ literals, values }} />
           </div>
         </div>
       );
