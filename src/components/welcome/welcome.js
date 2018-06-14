@@ -78,7 +78,7 @@ export default class Welcome extends Component {
               <div className="container">{contentList}</div>
               <input
                 type="button"
-                className="btn btn-block"
+                className="btn btn-secondary btn-block"
                 value={literals.buttonText}
               />
             </Link>

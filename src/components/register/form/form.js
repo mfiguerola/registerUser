@@ -110,7 +110,7 @@ class Form extends Component {
         </div>
         <input
           type="submit"
-          className="btn btn-block"
+          className="btn btn-secondary btn-block"
           value={literals.buttonText}
         />
       </form>
