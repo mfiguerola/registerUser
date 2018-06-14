@@ -78,7 +78,7 @@ class Form extends Component {
       }
       const baseInputClass = 'd-block pb-1';
       const validInputClass = formValue.isValid === false ? ' text-danger' : '';
-      const value = this.state.fields.find(item => item.key === key).value;
+      const value = this.state.fields.find(item => item.key === key).value || '';
       return (
         <label className={baseInputClass + validInputClass} key={key}>
           {literals[key].title}

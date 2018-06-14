@@ -15,9 +15,9 @@ export default class Welcome extends Component {
   }
 
   buildContentList(literals) {
-    return literals.content.list.map(listItem => {
+    return literals.content.list.map((listItem, key) => {
       return (
-        <div className="row no-gutters pb-3">
+        <div key={key} className="row no-gutters pb-3">
           <div className="col-2">
             <Icon type="blueTick" size="md" />
           </div>
