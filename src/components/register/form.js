@@ -2,10 +2,14 @@ import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
 
 class Form extends Component {
-  fieldValues = this.props.data.values;
-  handleSubmit = this.handleSubmit.bind(this);
-  emailRegExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      
+  constructor(props) {
+    super(props);
+    this.state = { fields: this.props.data.values };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.emailRegExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  }
+   
   handleSubmit(event) {
     event.preventDefault();
     this.saveValues(this.getFields());
@@ -18,11 +22,21 @@ class Form extends Component {
     }  
   }
 
+  handleChange(event) {
+    const fieldValues = this.state.fields.map(fieldValue => {
+      if (fieldValue.key === event.target.name) {
+        const value = event.target.value;
+        fieldValue.isValid = this.isFieldValid(fieldValue, value);
+        fieldValue.value = value;
+      }
+      return fieldValue;
+    });
+    this.setState({ fields: fieldValues });
+  }
+
   isValid() {
-    const invalidFields = this.fieldValues.filter(fieldValue => !fieldValue.isValid);
-    const isValid = invalidFields.length === 0;
-    this.setState({isValid})
-    return isValid;
+    const invalidFields = this.state.fields.filter(fieldValue => !fieldValue.isValid);
+    return invalidFields.length === 0;
   }
 
   isFieldValid(formConfig, value) {
@@ -36,7 +50,7 @@ class Form extends Component {
   }
 
   getFields() {
-    const formFields = this.fieldValues.map(formConfig => {
+    const formFields = this.state.fields.map(formConfig => {
       const value = this.refs[formConfig.key]._valueTracker.getValue();
       return {
         ...formConfig,
@@ -50,12 +64,12 @@ class Form extends Component {
   }
 
   saveValues(fields) {
-    this.fieldValues = Object.assign(this.fieldValues, fields);
+    this.setState({ fields });
   }
 
   render() {
     const literals = this.props.data.literals;
-    const values = this.formFields || this.props.data.values;
+    const values = this.state.fields || this.props.data.values;
     const formFields = values.map(formValue => {
       const key = formValue.key;
       let requiredHtml = '';
@@ -64,6 +78,7 @@ class Form extends Component {
       }
       const baseInputClass = 'd-block pb-1';
       const validInputClass = formValue.isValid === false ? ' text-danger' : '';
+      const value = this.state.fields.find(item => item.key === key).value;
       return (
         <label className={baseInputClass + validInputClass} key={key}>
           {literals[key].title}{requiredHtml}
@@ -72,7 +87,9 @@ class Form extends Component {
             type={formValue.type}
             ref={key}
             name={key}
+            value={value}
             placeholder={literals[key].placeholder}
+            onChange={this.handleChange}
           />
         </label>
       );
